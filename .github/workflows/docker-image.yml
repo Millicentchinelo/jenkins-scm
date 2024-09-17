@@ -53,6 +53,7 @@ jobs:
             --count 1 \
             --key-name "jenkinskey" \
             --security-group-ids sg-0f3ce752320980e9c \
+            --launch-template lt-00fde80026a743a12 \
             --query "Instances[0].InstanceId" \
             --output text)
           echo "INSTANCE_ID=$INSTANCE_ID" >> $GITHUB_ENV
@@ -67,17 +68,7 @@ jobs:
             --output text)
           echo "EC2_HOST=$PUBLIC_DNS" >> $GITHUB_ENV
 
-      - name:  Install Docker on your Instance
-        run: |   
-           sudo apt update -y
-           sudo apt install apt-transport-https ca-certificates curl software-properties-common
-           curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-           sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-           sudo apt update -y
-           sudo apt install docker-ce
-           sudo systemctl start docker
-           sudo systemctl enable docker
-           sudo usermod -aG docker $USER
+    
            
 
 
