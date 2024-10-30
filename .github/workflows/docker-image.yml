@@ -53,7 +53,7 @@ jobs:
             --count 1 \
             --key-name "jenkinskey" \
             --security-group-ids sg-0f3ce752320980e9c \
-            --launch-template "LaunchTemplateName=mytemplate,Version=1" \
+          #  --launch-template "LaunchTemplateName=mytemplate,Version=1" \
             --query "Instances[0].InstanceId" \
             --output text)
           echo "INSTANCE_ID=$INSTANCE_ID" >> $GITHUB_ENV
