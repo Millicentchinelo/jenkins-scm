@@ -53,14 +53,13 @@ jobs:
             --count 1 \
             --key-name "jenkinskey" \
             --security-group-ids sg-0f3ce752320980e9c \
-          #  --launch-template "LaunchTemplateName=mytemplate,Version=1" \
             --query "Instances[0].InstanceId" \
             --output text)
           echo "INSTANCE_ID=$INSTANCE_ID" >> $GITHUB_ENV
-
+      
           # Wait for the instance to be running
           aws ec2 wait instance-running --instance-ids $INSTANCE_ID
-
+      
           # Get the public DNS name of the instance
           PUBLIC_DNS=$(aws ec2 describe-instances \
             --instance-ids $INSTANCE_ID \
@@ -68,8 +67,8 @@ jobs:
             --output text)
           echo "EC2_HOST=$PUBLIC_DNS" >> $GITHUB_ENV
 
-    
-           
+
+                        
 
 
   deploy:
