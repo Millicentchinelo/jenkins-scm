@@ -8,5 +8,5 @@ WORKDIR  /usr/share/nginx/html/
 COPY index.html /usr/share/nginx/html/
 
 # Expose port 80 to allow external access
-EXPOSE 80
+EXPOSE 8081
 
